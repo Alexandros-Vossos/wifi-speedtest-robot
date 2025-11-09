@@ -1,0 +1,116 @@
+
+      {
+  "Name": "speedtest1.1",
+  "CreationDate": "2025-9-12",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "https://www.speedtest.net/",
+      "Value": "",
+      "Description": "Open Speedtest.net directly"
+    },
+    {
+      "Command": "store",
+      "Target": "true",
+      "Value": "!errorIgnore",
+      "Description": "Ignore errors if popups are missing"
+    },
+    {
+      "Command": "storeElementPresent",
+      "Target": "xpath=//*[@id='onetrust-accept-btn-handler']",
+      "Value": "cookiePopup",
+      "Description": "Check if cookie consent pop-up exists"
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${cookiePopup} == true",
+      "Value": "",
+      "Description": "If cookie pop-up exists, close it"
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=//*[@id='onetrust-accept-btn-handler']",
+      "Value": "",
+      "Description": "Click on Accept Cookies button"
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": "End cookie pop-up if"
+    },
+    {
+      "Command": "waitForElementPresent",
+      "Target": "xpath=//span[contains(@class,'start-text')]",
+      "Value": "20000",
+      "Description": "Wait until the 'Go' button appears"
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=//span[contains(@class,'start-text')]",
+      "Value": "",
+      "Description": "Click on the 'Go' button to start the speedtest"
+    },
+    {
+      "Command": "waitForElementVisible",
+      "Target": "xpath=//div[contains(@class,'download-speed') and contains(@class,'result-data-value')]",
+      "Value": "60000",
+      "Description": "Wait until the download speed result appears"
+    },
+    {
+      "Command": "storeText",
+      "Target": "xpath=//*[@id=\"container\"]/div/div[3]/div/div/div/div[2]/div[2]/div/div[4]/div/div[3]/div/div/div[2]/div/div/div/div[2]/span",
+      "Value": "downloadResult",
+      "Description": "Store the download speed value"
+    },
+    {
+      "Command": "storeText",
+      "Target": "xpath=//*[@id=\"container\"]/div/div[3]/div/div/div/div[2]/div[2]/div/div[4]/div/div[3]/div/div/div[2]/div/div[2]/div/div[2]/span",
+      "Value": "uploadResult",
+      "Description": "Store the upload speed value"
+    },
+    {
+      "Command": "echo",
+      "Target": "Download: ${downloadResult} Mbps | Upload: ${uploadResult} Mbps",
+      "Value": "",
+      "Description": "Print results to console"
+    },
+    {
+      "Command": "open",
+      "Target": "https://www.rapidtables.com/tools/notepad.html",
+      "Value": "",
+      "Description": "Open the online notepad"
+    },
+    {
+      "Command": "storeElementPresent",
+      "Target": "xpath=//*[@id='private-alert']/button",
+      "Value": "infoPopup",
+      "Description": "Check if the info pop-up exists"
+    },
+    {
+      "Command": "if_v2",
+      "Target": "${infoPopup} == true",
+      "Value": "",
+      "Description": "If info pop-up exists, close it"
+    },
+    {
+      "Command": "click",
+      "Target": "xpath=//*[@id='private-alert']/button",
+      "Value": "",
+      "Description": "Click on close button of the info pop-up"
+    },
+    {
+      "Command": "end",
+      "Target": "",
+      "Value": "",
+      "Description": "End info pop-up if"
+    },
+    {
+      "Command": "type",
+      "Target": "id=area",
+      "Value": "Download: ${downloadResult} Mbps | Upload: ${uploadResult} Mbps",
+      "Description": "Write the results into the notepad"
+    }
+  ]
+}
+    
